@@ -15,7 +15,6 @@ const ArticlePage = () => {
   const [onEdit, setOnEdit] = useState(false);
 
   useEffect(() => {
-    debugger;
     setShowArticles(articles);
   }, [articles]);
 

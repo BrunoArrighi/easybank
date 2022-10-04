@@ -12,7 +12,6 @@ const Table = ({ articles, onChange, ...props }) => {
 
   useEffect(() => {
     setShowArticles(articles);
-    console.log(articles);
     getPageNumbers();
     changeStep(pageActive);
   }, [articles]);
