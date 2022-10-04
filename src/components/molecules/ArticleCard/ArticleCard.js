@@ -41,7 +41,7 @@ const ArticleCardContainer = styled.div`
   }
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
     margin-bottom: 10px;
-    width: 30%;
+    width: 60%;
   }
   ${({ last }) =>
     last &&

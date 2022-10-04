@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { PagesContext } from "../../../context/PagesContext";
 import { Button } from "../../atoms/Button";
 import { Input } from "../../atoms/Input";
+import { Text } from "../../atoms/Text";
 
 const Form = ({
   author = "",
@@ -20,6 +21,7 @@ const Form = ({
   const [blogContentValue, setBlogContentValue] = useState(content);
 
   const [messageError, setMessageError] = useState("");
+  const [messageSuccess, setMessagesuccess] = useState("");
 
   useEffect(() => {
     setAuthorValue(author);
@@ -55,7 +57,7 @@ const Form = ({
       blogContentValue.length < 3 ||
       blogContentValue.length > 50
     ) {
-      setMessageError("min or max");
+      setMessageError("Enter a text between 3 and 50 letters");
       return;
     }
 
@@ -78,7 +80,10 @@ const Form = ({
           setMessageError("Unexpected error has ocurred. try again");
         }
         if (rta && rta.ok && rta.ok == true) {
-          onSubmit();
+          setMessagesuccess("Has been saved successfully");
+          setTimeout(() => {
+            setMessagesuccess("");
+          }, 4000);
           fetch(`https://servicepad-post-api.herokuapp.com/articles/`)
             .then((response) => {
               return response.json();
@@ -89,7 +94,7 @@ const Form = ({
               );
               setLatestArticles(arr.slice(0, 4));
               setArticles(arr);
-              return setPage("Home");
+              onSubmit();
             });
         }
       })
@@ -116,8 +121,9 @@ const Form = ({
         tag="textarea"
         onChange={(e) => setBlogContentValue(e.target.value)}
       />
+      {messageError && <MessageErr>{messageError}</MessageErr>}
+      {messageSuccess && <MessageSucc>{messageSuccess}</MessageSucc>}
       <ButtonStyle onClick={() => validate()}>Save</ButtonStyle>
-      {messageError && <label color="red">{messageError}</label>}
     </FormContainer>
   );
 };
@@ -129,7 +135,7 @@ Form.propTypes = {
   author: PropTypes.string,
   content: PropTypes.string,
   onEdit: PropTypes.bool,
-  id: PropTypes.string,
+  id: PropTypes.number,
   onSubmit: PropTypes.func,
 };
 
@@ -156,4 +162,12 @@ const ButtonStyle = styled(Button)`
   font-size: 16px;
   font-weight: 600;
   line-height: 24px;
+`;
+
+const MessageErr = styled(Text)`
+  color: #e4464a;
+`;
+
+const MessageSucc = styled(Text)`
+  color: ${({ theme }) => theme.colors.focus};
 `;

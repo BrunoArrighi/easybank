@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Text } from "../components/atoms/Text";
 import { Form } from "../components/molecules/Form";
@@ -8,10 +8,16 @@ import { PagesContext } from "../context/PagesContext";
 const ArticlePage = () => {
   const { articles } = useContext(PagesContext);
   const [author, setAuthor] = useState("");
+  const [showArticles, setShowArticles] = useState(articles);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [idArticle, setIdArticle] = useState("");
   const [onEdit, setOnEdit] = useState(false);
+
+  useEffect(() => {
+    debugger;
+    setShowArticles(articles);
+  }, [articles]);
 
   const sendArticleEdit = (id) => {
     const article = articles.filter((a) => a.id === id);
@@ -48,7 +54,10 @@ const ArticlePage = () => {
       <TextArticlePage>
         Publish a new blog article to feature in the Easybank homepage.
       </TextArticlePage>
-      <TableStyle articles={articles} onChange={(id) => sendArticleEdit(id)} />
+      <TableStyle
+        articles={showArticles ? showArticles : articles}
+        onChange={(id) => sendArticleEdit(id)}
+      />
     </ArticlePageContainer>
   );
 };

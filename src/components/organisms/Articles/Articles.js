@@ -89,6 +89,7 @@ const BodyArticles = styled.div`
   width: auto;
   @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
     flex-wrap: wrap;
+    justify-content: center;
   }
   @media (max-width: ${({ theme }) => theme.breakpoint.sm}) {
     flex-direction: column;

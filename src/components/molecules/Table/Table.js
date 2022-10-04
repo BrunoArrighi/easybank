@@ -6,18 +6,22 @@ import { IconArrowLeft, IconArrowRight } from "../../atoms/Icon";
 
 const Table = ({ articles, onChange, ...props }) => {
   const [pageActive, setPageActive] = useState(0);
+  const [showArticles, setShowArticles] = useState(articles);
   const [pageNumbers, setPageNumbers] = useState([]);
-  const [art, setArt] = useState([...articles].slice(0, 6));
+  const [art, setArt] = useState([...showArticles].slice(0, 6));
 
   useEffect(() => {
+    setShowArticles(articles);
+    console.log(articles);
     getPageNumbers();
-  }, []);
+    changeStep(pageActive);
+  }, [articles]);
 
   const changeStep = (id) => {
     if (id < 0) return;
     const firstIndex = id * 6;
-    if (firstIndex >= articles.length) return;
-    setArt([...articles].slice(firstIndex, firstIndex + 6));
+    if (firstIndex >= showArticles.length) return;
+    setArt([...showArticles].slice(firstIndex, firstIndex + 6));
     setPageActive(id);
   };
 
@@ -39,7 +43,7 @@ const Table = ({ articles, onChange, ...props }) => {
   };
 
   const getPageNumbers = () => {
-    const totalPages = articles.length / 6;
+    const totalPages = showArticles.length / 6;
     let pNumbers = [];
 
     for (let i = 1; i <= Math.ceil(totalPages); i++) {
