@@ -41,7 +41,8 @@ const Table = ({ articles, onChange }) => {
     const totalPages = articles.length / 6;
 
     for (let i = 1; i <= Math.ceil(totalPages); i++) {
-      pageNumbers.push(i);
+      const obj = { num: i };
+      pageNumbers.push(obj);
     }
   };
 
@@ -81,7 +82,11 @@ const Table = ({ articles, onChange }) => {
             onClick={() => changeStep(pageActive - 1)}
           >{`<-- Previous`}</TextStep>
         </Previous>
-        <Steps>{pageNumbers.map((number, idx) => console.log(number))}</Steps>
+        <Steps>
+          {pageNumbers.map((n, idx) => (
+            <TextStep key={idx}>{n.num}</TextStep>
+          ))}
+        </Steps>
         <Next>
           <TextStep
             tag="a"

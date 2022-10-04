@@ -41,7 +41,7 @@ const Header = () => {
         ))}
       </PagesContainer>
       <ButtonContainer>
-        <Button>Request Invite</Button>
+        <ButtonStyle>Request Invite</ButtonStyle>
       </ButtonContainer>
     </HeaderContainer>
   );
@@ -102,4 +102,10 @@ const PagesText = styled(Text)`
 const ButtonContainer = styled.div`
   width: 160px;
   margin: 18px 0px 17px 0px;
+`;
+
+const ButtonStyle = styled(Button)`
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 7px;
 `;

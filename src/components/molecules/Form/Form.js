@@ -85,9 +85,7 @@ const Form = ({
               return response.json();
             })
             .then((data) => {
-              const arr = data.data.sort((a, b) =>
-                console.log(a.date > b.date)
-              );
+              const arr = data.data.sort((a, b) => a.date > b.date);
               setLatestArticles(arr.slice(arr.length - 4, arr.length));
               return setArticles(arr);
             });
@@ -116,7 +114,7 @@ const Form = ({
         tag="textarea"
         onChange={(e) => setBlogContentValue(e.target.value)}
       />
-      <Button onClick={() => validate()}>Save</Button>
+      <ButtonStyle onClick={() => validate()}>Save</ButtonStyle>
       {messageError && <label color="red">{messageError}</label>}
     </FormContainer>
   );
@@ -150,4 +148,10 @@ const LabelForm = styled.label`
 const InputStyle = styled(Input)`
   margin-top: 4px;
   margin-bottom: 24px;
+`;
+
+const ButtonStyle = styled(Button)`
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
 `;

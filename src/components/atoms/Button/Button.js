@@ -26,6 +26,7 @@ const Butt = styled.button`
   width: 100%;
   height: 45px;
   cursor: pointer;
+  font-family: ${({ theme }) => theme.fontFamily};
   &: hover {
     transition: all 0.2s ease-in;
     background: linear-gradient(90deg, #84e1a7 4.85%, #81d6db 100%);

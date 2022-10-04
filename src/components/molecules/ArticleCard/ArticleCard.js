@@ -28,7 +28,7 @@ ArticleCard.propTypes = {
 
 const ArticleCardContainer = styled.div`
   background: #ffffff;
-  width: 250px;
+  width: 23%;
   height: 399px;
   border-radius: 8px;
   display: flex;
@@ -39,8 +39,9 @@ const ArticleCardContainer = styled.div`
     color: ${({ theme }) => theme.colors.hover};
     font-weight: 500;
   }
-  @media (max-width: ${({ theme }) => theme.breakpoint.lg}) {
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
     margin-bottom: 10px;
+    width: 30%;
   }
   ${({ last }) =>
     last &&
@@ -89,4 +90,6 @@ const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 26px;
+  margin-right: 32px;
+  overflow-wrap: anywhere;
 `;

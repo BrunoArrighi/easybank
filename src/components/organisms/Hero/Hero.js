@@ -73,24 +73,11 @@ const ImageContainer = styled.div`
   }
 `;
 
-const FirstVector = styled.div`
-  background: linear-gradient(105.49deg, #33d35e 7.84%, #2ab6d9 91.8%);
-  height: 649px;
-  width: 500px;
-`;
-
-const SecondVector = styled.div`
-  background: #2d314d;
-  height: 649px;
-  width: 500px;
-`;
-
 const Image = styled.img`
   position: relative;
-  top: -796px;
-  right: -34%;
+  top: -102.3%;
+  float: right;
   @media (max-width: ${({ theme }) => theme.breakpoint.xl}) {
     top: -100.2%;
-    right: -24.2%;
   }
 `;

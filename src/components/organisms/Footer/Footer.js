@@ -78,6 +78,9 @@ const FooterContainer = styled.div`
   padding: 48px 164px 46px 165px;
   display: flex;
   justify-content: space-between;
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+    flex-direction: column;
+  }
 `;
 
 const SocialContainer = styled.div`
@@ -88,6 +91,11 @@ const SocialContainer = styled.div`
 const LinksContainer = styled.div`
   display: flex;
   flex-direction: column;
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+    flex-direction: row;
+    justify-content: center;
+    margin-top 16px;
+  }
 `;
 
 const RightsContainer = styled.div`
@@ -118,10 +126,16 @@ const TextLink = styled(Text)`
   &:hover {
     color: ${({ theme }) => theme.colors.hover};
   }
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+    margin-right: 16px;
+  }
   ${({ last }) =>
     last &&
     css`
       margin-bottom: 0px;
+      @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+        margin-right: 0px;
+      }
     `}
   ${({ rights }) =>
     rights &&
@@ -137,4 +151,7 @@ const TextLink = styled(Text)`
 const ButtonStyle = styled(Button)`
   width: 165px;
   margin-bottom: 28px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 7px;
 `;

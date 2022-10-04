@@ -82,7 +82,12 @@ const BodyArticles = styled.div`
   flex-direction: row;
   justify-content: space-between;
   width: auto;
-  flex-wrap: wrap;
+  @media (max-width: ${({ theme }) => theme.breakpoint.md}) {
+    flex-wrap: wrap;
+  }
+  @media (max-width: ${({ theme }) => theme.breakpoint.sm}) {
+    flex-direction: column;
+  }
 `;
 
 const TextArticles = styled(Text)`
@@ -95,4 +100,7 @@ const TextArticles = styled(Text)`
 
 const ButtonContainer = styled(Button)`
   width: 160px;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: -0.02em;
 `;
