@@ -14,7 +14,7 @@ const Form = ({
   onSubmit,
   ...props
 }) => {
-  const { setArticles, setLatestArticles } = useContext(PagesContext);
+  const { setArticles, setLatestArticles, setPage } = useContext(PagesContext);
   const [authorValue, setAuthorValue] = useState(author);
   const [blogTitleValue, setBlogTitleValue] = useState(title);
   const [blogContentValue, setBlogContentValue] = useState(content);
@@ -74,7 +74,6 @@ const Form = ({
       requestOptions
     )
       .then((rta) => {
-        debugger;
         if (rta && rta.status && rta.status > 399) {
           setMessageError("Unexpected error has ocurred. try again");
         }
@@ -85,9 +84,12 @@ const Form = ({
               return response.json();
             })
             .then((data) => {
-              const arr = data.data.sort((a, b) => a.date > b.date);
-              setLatestArticles(arr.slice(arr.length - 4, arr.length));
-              return setArticles(arr);
+              const arr = data.data.sort(
+                (a, b) => new Date(b.date) - new Date(a.date)
+              );
+              setLatestArticles(arr.slice(0, 4));
+              setArticles(arr);
+              return setPage("Home");
             });
         }
       })
@@ -136,7 +138,7 @@ const FormContainer = styled.div`
   padding: 42px 45px 32px 72px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.06);
   border-radius: 41px;
-  width: 693px;
+  width: 100%;
 `;
 
 const LabelForm = styled.label`

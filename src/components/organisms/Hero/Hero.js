@@ -42,6 +42,7 @@ const HeroContainer = styled.div`
 const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-self: center;
 `;
 
 const TextTitle = styled(Text)`
@@ -74,10 +75,7 @@ const ImageContainer = styled.div`
 `;
 
 const Image = styled.img`
-  position: relative;
-  top: -102.3%;
-  float: right;
-  @media (max-width: ${({ theme }) => theme.breakpoint.xl}) {
-    top: -100.2%;
-  }
+  position: absolute;
+  top: 0;
+  right: 0;
 `;

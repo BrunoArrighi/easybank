@@ -21,11 +21,16 @@ const Articles = ({ withBtn }) => {
       })
       .then((data) => {
         const arr = data.data.sort(
-          (a, b) => new Date(a.date) > new Date(b.date)
+          (a, b) => new Date(b.date) - new Date(a.date)
         );
-        setLatestArticles(arr.slice(arr.length - 4, arr.length));
+        setLatestArticles(arr.slice(0 - 4));
         return setArticles(arr);
       });
+  };
+
+  const changePage = (p) => {
+    setPage(p);
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -33,7 +38,7 @@ const Articles = ({ withBtn }) => {
       <HeaderArticles>
         <TextArticles>Latest Articles</TextArticles>
         {withBtn && (
-          <ButtonContainer onClick={() => setPage("Articles")}>
+          <ButtonContainer onClick={() => changePage("Articles")}>
             + Add New Article
           </ButtonContainer>
         )}

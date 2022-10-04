@@ -80,8 +80,11 @@ const TextArticlePage = styled(Text)`
 
 const FormStyle = styled(Form)`
   align-self: center;
-  margin-top: 72px;
-  margin-bottom: 64px;
+  margin: 72px 0px 64px 0px;
+  width: 60%;
 `;
 
-const TableStyle = styled(Table)``;
+const TableStyle = styled(Table)`
+  margin-top: 56px;
+  margin-bottom: 8px;
+`;
